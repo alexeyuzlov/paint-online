@@ -16,7 +16,7 @@ const Toolbar = () => {
     }
 
     const download = () => {
-        const dataUrl = canvasState.canvas.toDataURL()
+        const dataUrl = canvasState.canvas.toDataURL() // о, я вижу по коду кол-во такой же строки. Вообще это будет хорошей практикой расширять методы стейтов, а не компонентов, как в обычном MVC
         const a = document.createElement('a')
         a.href = dataUrl
         a.download = canvasState.sessionid + ".jpg"
@@ -27,6 +27,8 @@ const Toolbar = () => {
 
     return (
         <div className="toolbar" style={{display: "flex", flexAlign: "center", gap: 10}}>
+            {/*при каждом клике здесь генерится новая тулза, а если присмотреться это всё должно быть синглтонами*/}
+            {/*плюс есть проблема очистки ресурсов, когда тулза удаляется, но остаются слушатели событий*/}
             <button className="toolbar__btn brush" onClick={() => toolState.setTool(new Brush(canvasState.canvas, canvasState.socket, canvasState.sessionid))}/>
             <button className="toolbar__btn rect" onClick={() => toolState.setTool(new Rect(canvasState.canvas, canvasState.socket, canvasState.sessionid))}/>
             <button className="toolbar__btn circle" onClick={() => toolState.setTool(new Circle(canvasState.canvas, canvasState.socket, canvasState.sessionid))}/>
