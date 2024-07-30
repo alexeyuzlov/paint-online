@@ -3,3 +3,6 @@
 
 ## Запуск сервера:
 ### npm run dev
+
+## Через DOcker
+### docker-compose up
