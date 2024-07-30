@@ -1,5 +1,6 @@
 import {makeAutoObservable} from "mobx";
 
+// canvasState -> appState очень вероятно, сейчас он выполняет много лишних обязаностей
 class CanvasState {
     canvas = null
     socket = null
@@ -12,9 +13,11 @@ class CanvasState {
         makeAutoObservable(this)
     }
 
+    // сокеты здесь лишние, это отдельный стейт
     setSessionId(id) {
         this.sessionid = id
     }
+
     setSocket(socket) {
         this.socket = socket
     }
@@ -35,6 +38,9 @@ class CanvasState {
         this.redoList.push(data)
     }
 
+    // undo + redo Это свой независимый стейт, который используется через композицию
+    // также эта фича ничего не может знать о сокетах, корректнее вытащить сокеты в свой стейт,
+    // а undo/redo сделать тоже отдельным стейтом и обмениваться событиями
     undo() {
         let ctx = this.canvas.getContext('2d');
 

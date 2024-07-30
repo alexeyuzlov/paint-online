@@ -8,8 +8,9 @@ const fs = require('fs')
 const path = require('path')
 
 app.use(express.json())
+app.use(cors());
 
-
+// сокеты отдельно в файл
 app.ws('/', (ws, req) => {
     ws.on('message', (msg) => {
         msg = JSON.parse(msg)
@@ -30,6 +31,20 @@ app.ws('/', (ws, req) => {
     });
 })
 
+const connectionHandler = (ws, msg) => {
+    ws.id = msg.id
+    broadcastConnection(ws, msg)
+}
+
+const broadcastConnection = (ws, msg) => {
+    aWss.clients.forEach(client => {
+        if (client.id === msg.id) {
+            client.send(JSON.stringify(msg))
+        }
+    })
+}
+
+// апи отдельно в файл, посмотри как дробят express приложения
 app.post('/image', (req, res) => {
     try {
         const data = req.body.img.replace(`data:image/png;base64,`, '')
@@ -46,21 +61,10 @@ app.get('/image', (req, res) => {
         const data = `data:image/png;base64,` + file.toString('base64')
         res.json(data)
     } catch (e) {
+        // это поведение по умолчанию, т.к. файла не будет, он должен создаваться заранее
+        // я могу предложить хранить временно в памяти, а не писать его на диск, т.к. это упростит инициализацию
         return res.status(500).json('error')
     }
 })
 
 app.listen(PORT, () => console.log(`server started on PORT ${PORT}`))
-
-const connectionHandler = (ws, msg) => {
-    ws.id = msg.id
-    broadcastConnection(ws, msg)
-}
-
-const broadcastConnection = (ws, msg) => {
-    aWss.clients.forEach(client => {
-        if (client.id === msg.id) {
-            client.send(JSON.stringify(msg))
-        }
-    })
-}
