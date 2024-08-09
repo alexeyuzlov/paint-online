@@ -11,6 +11,7 @@ import Circle from "../tools/Circle";
 import Eraser from "../tools/Eraser";
 import Line from "../tools/Line";
 
+// actions test
 // Это god object антипаттерн, здесь должны быть только методы для работы с canvas и ничего кроме
 const Canvas = observer(() => {
     const canvasRef = useRef()
