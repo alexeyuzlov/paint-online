@@ -100,4 +100,6 @@ class CanvasState {
     }
 }
 
-export default new CanvasState()
+const canvasState = new CanvasState();
+
+export default canvasState;
