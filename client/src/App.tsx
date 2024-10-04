@@ -1,24 +1,23 @@
 import React from 'react';
 import "./styles/app.css"
-import SettingBar from "./components/SettingBar";
-import Toolbar from "./components/Toolbar";
-import Canvas from "./components/Canvas";
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate, useParams} from 'react-router-dom'
+import DrawingScreen from "./components/DrawingScreen";
+import appState from "./store/app.state";
+import authState from "./store/auth.state";
 
 const App = () => {
+    const urlParams = useParams();
+
+    appState.init();
+    authState.setSessionId(urlParams.id!);
+
     return (
         <BrowserRouter>
             <div className="app">
                 <Routes>
                     <Route
                         path='/:id'
-                        element={
-                        <>
-                            <Toolbar />
-                            <SettingBar />
-                            <Canvas />
-                        </>
-                        }
+                        element={<DrawingScreen></DrawingScreen>}
                     />
                     <Route
                         path="*"

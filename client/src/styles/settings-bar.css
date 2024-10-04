@@ -1,0 +1,16 @@
+.settings-bar {
+    height: 40px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 4px 5px gray;
+    top: 40px;
+}
+
+.settings-bar__label {
+    margin-bottom: 0;
+}

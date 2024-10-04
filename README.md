@@ -4,5 +4,5 @@
 ## Запуск сервера:
 ### npm run dev
 
-## Через DOcker
+## Через Docker
 ### docker-compose up

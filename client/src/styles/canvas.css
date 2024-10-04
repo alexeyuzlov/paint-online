@@ -1,11 +1,20 @@
 .canvas {
   height: 100vh;
-  display: flex;
+  display: grid;
+  gap: 20px;
+  padding-top: 100px;
+  padding-bottom: 30px;
+  text-align: center;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 }
 
-canvas {
+.canvas__item {
   border: 1px solid black;
   background-color: white;
+}
+
+.canvas__title {
+  margin: 0;
 }
