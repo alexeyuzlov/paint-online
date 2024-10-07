@@ -3,7 +3,7 @@ authtoken: 2VYdoz8P9NVS2TUwMSHXRmUH3mW_C1qYaq2UDyoXRQSkvQGX
 tunnels:
   http:
     proto: http
-    addr: 3001
+    addr: 3000
   websocket:
     proto: http
     addr: 5000

@@ -13,5 +13,10 @@ export const setImageHandler = (canvasRef: HTMLCanvasElement, imageUrl: string):
                 reject(error);
             }
         };
+
+        img.onerror = () => {
+            ctx.clearRect(0, 0, canvasRef.width, canvasRef.height);
+            resolve();
+        }
     });
 };
