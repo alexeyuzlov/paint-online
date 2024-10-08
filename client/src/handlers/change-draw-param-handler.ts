@@ -1,5 +1,5 @@
 import toolState from "../store/tool.state";
-import {ChangeDrawParamSocketData, ChangeDrawParamSocketType, SocketMessageData} from "../entities/socket";
+import {ChangeDrawParamSocketData, ChangeDrawParamSocketType} from "../entities/socket";
 
 export const changeDrawParamHandler = (data: ChangeDrawParamSocketData) => {
     switch (data.type) {

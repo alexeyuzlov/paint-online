@@ -20,7 +20,7 @@ const Canvas = observer(() => {
 
         fetchImage(canvasRef.current!, urlParams.id!)
             .then(() => socketState.connect());
-    }, []);
+    }, [urlParams.id]);
 
     const handleMouseDown = () => {
         // Вопрос, что лучше, такое обращение через стейт или через референс, т к канвас уже получен в текущем компоненте?
