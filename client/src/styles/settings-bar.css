@@ -12,5 +12,7 @@
 }
 
 .settings-bar__label {
+    display: flex;
+    gap: 4px;
     margin-bottom: 0;
 }

@@ -3,6 +3,8 @@ import {setImageHandler} from "../handlers/set-image-handler";
 import {SocketEvent, SocketMessageData, UndoRedoSocketData, UndoRedoSocketMethod} from "../entities/socket";
 import {EventType} from "../entities/event";
 
+// здесь происходит нарушение зоны ответственности, т.к. мы храним все данные на сервере, соответственно
+// эта фича уместнее там - нам надо рассылать всем кто подключен, что кто-то что-то сделал
 class UndoRedoState {
     public canvas!: HTMLCanvasElement;
 

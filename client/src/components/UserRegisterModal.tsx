@@ -1,6 +1,7 @@
-import {Button, Modal} from "react-bootstrap";
-import {ChangeEvent, useState} from "react";
-import authState from "../store/auth.state";
+import { Button, Modal } from 'react-bootstrap';
+import { ChangeEvent, useState } from 'react';
+import authState from '../store/auth.state';
+import { USERNAME } from '../entities/keys';
 
 const UserRegisterModal = () => {
     const [modal, setModal] = useState(true);
@@ -8,7 +9,7 @@ const UserRegisterModal = () => {
 
     const connectionHandler = () => {
         authState.setUsername(username);
-        localStorage.setItem('username', username);
+        localStorage.setItem(USERNAME, username);
         setModal(false);
     };
 
@@ -17,10 +18,7 @@ const UserRegisterModal = () => {
     };
 
     return (
-        <Modal
-            show={modal}
-            onHide={() => {}}
-        >
+        <Modal show={modal}>
             <Modal.Header>
                 <Modal.Title>Введите ваше имя</Modal.Title>
             </Modal.Header>

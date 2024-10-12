@@ -26,6 +26,9 @@ class SocketState {
             return;
         }
 
+        // это лишнее, такое хранится на серверной стороне, когда подключается новый юзер, у каждого подключения внутри уже есть id
+        // поэтому я предлагаю socket.io, там это все уже есть из коробки.
+        // Вообще это хорошая практика смотреть как сделано в крутых либах
         const messageBody: SocketMessage = {
             ...message,
             username: authState.getUsername,
@@ -66,9 +69,12 @@ class SocketState {
                     console.log(`пользователь ${message.username} присоединился`)
                     break;
                 case SocketEvent.Draw:
+                    // этот стейт должен распространять события, ему нет дела до toolState
+                    // плюс лучше не прятать так функции, которые имеют внутри mobx логику
                     drawHandler(message.data);
                     break;
                 case SocketEvent.Do:
+                    // этот стейт должен распространять события, ему нет дела до canvasState
                     undoRedoHandler(message.data, canvasState.getCanvasRef!);
                     break;
                 case SocketEvent.ChangeDrawParam:

@@ -77,6 +77,8 @@ class ToolState {
         return this.toolsSet[toolName]!;
     }
 
+    // 1. здесь идёт дублирование кода, которое можно избежать при доп параметрах в html
+    // 2. tool state ничего не должен знать про сокеты, надо следить извне за этим стейтом
     public setFillColor(color: string | CanvasGradient | CanvasPattern, shouldSendBySocket = false) {
         this.currentTool!.fillColor = color;
 
@@ -125,6 +127,8 @@ class ToolState {
             EventType.ChangeDrawParam,
             {detail: message}
         );
+
+        // это не mobx подход
         document.dispatchEvent(drawEvent);
     }
 }

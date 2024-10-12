@@ -7,9 +7,8 @@ import authState from "./store/auth.state";
 
 const App = () => {
     const urlParams = useParams();
-
     appState.init();
-    authState.setSessionId(urlParams.id!);
+    authState.setSessionId(urlParams.id!); // это undefined
 
     return (
         <BrowserRouter>
@@ -19,6 +18,7 @@ const App = () => {
                         path='/:id'
                         element={<DrawingScreen></DrawingScreen>}
                     />
+                    {/*эту логику лучше вынести из html*/}
                     <Route
                         path="*"
                         element={<Navigate to={`f${(+new Date()).toString(16)}`} replace />}

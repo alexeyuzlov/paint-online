@@ -32,19 +32,24 @@ const Toolbar = observer(() => {
             </div>
             <div className="toolbar__actions">
                 <div className="toolbar__btn toolbar-btn">
+                    {/*здесь не хватает disabled из стейта*/}
                     <button
+                        type="button"
                         className="toolbar-btn__content undo"
                         onClick={() => undoRedoState.undo()}
                     />
                 </div>
                 <div className="toolbar__btn toolbar-btn">
+                    {/*здесь не хватает disabled из стейта*/}
                     <button
+                        type="button"
                         className="toolbar-btn__content redo"
                         onClick={() => undoRedoState.redo()}
                     />
                 </div>
                 <div className="toolbar__btn toolbar-btn">
                     <button
+                        type="button"
                         className="toolbar-btn__content save"
                         onClick={() => canvasState.download()}
                     />

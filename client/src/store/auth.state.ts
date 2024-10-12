@@ -1,5 +1,6 @@
 import {makeAutoObservable} from "mobx";
 
+// в socket.io уже есть фича разослать всем кроме себя (broadcast), для примера, поэтому эта фича с AuthState и запросом userName - лишняя
 class AuthState {
     private _sessionId!: string;
 

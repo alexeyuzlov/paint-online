@@ -1,3 +1,5 @@
+// серверную часть очень легко перевести на ts через сборку webpack
+// а для сокетов можно использовать socket.io, т.к. она позволяет читать привычными паттернами и имеет ряд фолбеков
 module.exports = function (app, aWss) {
     app.ws('/', (ws, req) => {
         ws.on('message', (msg) => {
@@ -14,6 +16,7 @@ module.exports = function (app, aWss) {
             }
         });
 
+        // а ещё есть F5 - когда юзер отконнекчивается и переподключается, у него новый id, старый надо прибивать
         ws.on('connection', (msg) => {
             msg = JSON.parse(msg);
             console.log(msg);

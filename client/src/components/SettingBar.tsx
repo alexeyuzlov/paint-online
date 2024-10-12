@@ -1,25 +1,23 @@
 import React from 'react';
-import toolState from "../store/tool.state";
+import toolState from '../store/tool.state';
+// как вариант можно использовать css-in-js
 import '../styles/settings-bar.css';
 
 const SettingBar = () => {
     return (
         <div className="settings-bar">
-            <label
-                className="settings-bar__label"
-                htmlFor="line-width"
-            >
-                Толщина линии
+            <label className="settings-bar__label">
+                <span>Толщина линии</span>
+                <input
+                    onChange={(e) => toolState.setLineWidth(+e.target.value, true)}
+                    type="number"
+                    defaultValue={1}
+                    min={1}
+                    max={50}
+                />
             </label>
-            <input
-                onChange={(e) => toolState.setLineWidth(+e.target.value, true)}
-                id="line-width"
-                type="number"
-                defaultValue={1}
-                min={1}
-                max={50}
-            />
 
+            {/*смотри предыдущий вариант как input обернул в label, так тоже можно*/}
             <label
                 className="settings-bar__label"
                 htmlFor="fill-color"
